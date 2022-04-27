@@ -1,17 +1,51 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Apr 12 18:28:16 2022
 
-@author: johnw
-"""
-
-
-# -*- coding: utf-8 -*-
-"""
-
-johnwoates
+Angela DeLeo
 CPSC 223P-01
-Thu Apr 12, 2022
-joates@fullerton.edu
+Mon May 01, 2022
+atakux707@csu.fullerton.edu
 
 """
+
+#import required modules
+import threading
+import string
+
+
+def threadFunc(t):
+	"""thread func that the two threads will call"""
+	#if the argument the thread passes is a, the numbers will run
+	if t == 'A':
+		
+		with open("synch.txt", 'w') as synchFile:
+			
+			for a in range(20):
+
+				for i in range(26):
+					synchFile.write(f"{i+1} ")
+
+				synchFile.write("\n")
+
+			synchFile.write("\n")
+
+	#elif the argument the thread passes is b, then the letters will run
+	elif t == 'B':
+
+		with open("synch.txt", 'a') as synchFile:
+
+			for b in range(20):
+			
+				for letter in string.ascii_uppercase:
+					synchFile.write(f"{letter} ")
+			
+				synchFile.write("\n")
+
+
+#create and start thread A
+threadA = threading.Thread(target=threadFunc, args=('A',))
+threadA.start()
+
+#create and start thread B
+threadB = threading.Thread(target=threadFunc, args=('B',))
+threadB.start()
