@@ -18,7 +18,7 @@ def threadFunc(t):
 	#if the argument the thread passes is a, the numbers will run
 	if t == 'A':
 		
-		with open("synch.txt", 'w') as synchFile:
+		with open("synch.txt", 'a') as synchFile:
 			
 			for a in range(20):
 
@@ -26,8 +26,6 @@ def threadFunc(t):
 					synchFile.write(f"{i+1} ")
 
 				synchFile.write("\n")
-
-			synchFile.write("\n")
 
 	#elif the argument the thread passes is b, then the letters will run
 	elif t == 'B':
